@@ -24,3 +24,7 @@ Route::get('actionlogout', [\App\Http\Controllers\LoginController::class, 'actio
 //REGISTER
 Route::get('register', [\App\Http\Controllers\RegisterController::class, 'register'])->name('register');
 Route::post('register/action', [\App\Http\Controllers\RegisterController::class, 'actionregister'])->name('actionregister');
+
+//ADMIN
+Route::get('admin',[\App\Http\Controllers\DokterController::class, 'index'])->name('admin')->middleware('auth');
+Route::get('actionlogout', [\App\Http\Controllers\LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');

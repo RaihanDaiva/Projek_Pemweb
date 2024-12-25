@@ -15,8 +15,15 @@ class LoginController extends Controller
     {
         // Jika user sudah login, redirect ke halaman home
         if (Auth::check()) {
-            return redirect()->route('home');
+            $role = Auth::user()->role;
+            if ($role === 'admin') {
+                return redirect('admin'); // Arahkan ke halaman admin
+            } elseif ($role === 'user') {
+                return redirect('home'); // Arahkan ke halaman user
+            }
         }
+
+        
 
         return view('logreg/login');
     }
@@ -26,26 +33,22 @@ class LoginController extends Controller
      */
     public function actionlogin(Request $request)
     {
-        // Validasi input
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        // Coba autentikasi user dengan kredensial
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Regenerasi sesi untuk keamanan
-            $request->session()->regenerate();
-
-            return redirect()->intended('home');
+            // Periksa role pengguna
+            $role = Auth::user()->role;
+    
+            if ($role === 'admin') {
+                return redirect('admin'); // Arahkan ke halaman admin
+            } elseif ($role === 'user') {
+                return redirect('home'); // Arahkan ke halaman user
+            }
+        } else {
+            // Jika login gagal
+            Session::flash('error', 'Email atau Password salah');
+            return redirect('/');
         }
-
-        // Jika login gagal, beri pesan error
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ])->withInput();
     }
 
     /**

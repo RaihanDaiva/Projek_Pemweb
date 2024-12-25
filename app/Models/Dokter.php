@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Dokter extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -14,6 +14,5 @@ class Post extends Model
         'nomor_lisensi',
         'jadwal_praktek',
         'kontak',
-        'foto',
     ];
 }
