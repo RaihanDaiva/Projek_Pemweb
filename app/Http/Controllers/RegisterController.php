@@ -11,17 +11,18 @@ class RegisterController extends Controller
 {
     public function register()
     {
-        return view('logreg/register');
+        return view('logreg.register');
     }
     
     public function actionregister(Request $request)
     {
         // Validasi data
-        // $request->validate([
-        // 'name' => 'required|string|max:255', // Pastikan kolom 'name' diisi
-        // 'email' => 'required|email|unique:users',
-        // 'password' => 'required|min:8|confirmed',
-        // ]);
+        $request->validate([
+        'name' => 'required|string|max:255', // Pastikan kolom 'name' diisi
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:8',
+        'role' => 'required',
+        ]);
 
         $user = User::create([
             'name' => $request->name,

@@ -66,7 +66,7 @@
         </a>
 
         <div class="navbar-nav w-100">
-          <a href="index.php" class="nav-item nav-link active">
+          <a href="#" class="nav-item nav-link active">
             <i class="fa fa-tachometer-alt me-2"></i>Dashboard
           </a>
 
@@ -74,18 +74,20 @@
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
               <i class="fa fa-table me-2"></i>Tables
             </a>
-            <div class="dropdown-menu bg-transparent border-0">
-              <a href="pasien.php" class="dropdown-item">Pasien</a>
-              <a href="pembayaran.php" class="dropdown-item">Pembayaran</a>
-              <a href="rekam_medis.php" class="dropdown-item">Rekam Medis</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="admin/user" class="dropdown-item">User</a>
+                    <a href="admin/pasien" class="dropdown-item">Pasien</a>
+                    <a href="admin/pembayaran" class="dropdown-item">Pembayaran</a>
+                    <a href="admin/rekam_medis" class="dropdown-item">Rekam Medis</a>
+                    <a href="admin/obat" class="dropdown-item">Obat</a>
 
-              <!-- Dropdown Pegawai -->
-              <p class="dropdown-item dropdown d-flex flex-row" style="margin-bottom:0px; gap:70px;">Pegawai <i class="bi bi-chevron-up"></i></p>
-              <div class="dropdown-submenu show bg-transparent border-0">
-                <a href="dokter.php" class="dropdown-item" style="margin-left:10px ;">Dokter</a>
-                <a href="perawat.php" class="dropdown-item" style="margin-left:10px ;">Perawat</a>
-                <a href="administrasi.php" class="dropdown-item" style="margin-left:10px ;">Kasir</a>
-              </div>
+                    <!-- Dropdown Pegawai -->
+                    <p class="dropdown-item dropdown d-flex flex-row" style="margin-bottom:0px; gap:70px;">Pegawai <i class="bi bi-chevron-up"></i></p>
+                    <div class="dropdown-submenu show bg-transparent border-0">
+                    <a href="admin/dokter" class="dropdown-item" style="margin-left:10px ;">Dokter</a>
+                    <a href="admin/perawat" class="dropdown-item" style="margin-left:10px ;">Perawat</a>
+                    <a href="admin/kasir" class="dropdown-item" style="margin-left:10px ;">Kasir</a>
+                </div>
 
 
               <!-- Akhir Dropdown Pegawai -->
@@ -114,8 +116,7 @@
   <!-- Content Start -->
   <div class="content">
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand bg-light navbar-light px-4 py-3" style="border-bottom-left-radius: 10px;
-">
+    <nav class="navbar navbar-expand bg-light navbar-light px-4 py-3">
       <div class="">
         <h1 style="margin-bottom: 0px;" class="text-primary">Dashboard</h1>
       </div>
@@ -144,8 +145,9 @@
         <div class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
             <!-- <span class="d-none d-lg-inline-flex">John Doe</span> -->
+            <b> <i class="fa-regular fa-user"></i> {{Auth::user()->name}}</b>
           </a>
-          <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0 text-primary">
+          <div class="dropdown-menu dropdown-menu-end bg-light rounded-0 rounded-bottom m-0 text-primary border-top-0">
             <a href="{{route('actionlogout')}}" class="dropdown-item">Log Out</a>
           </div>
         </div>
@@ -157,14 +159,13 @@
     <!-- Sale & Revenue Start -->
     <div class="container-fluid pt-4 px-4 custom-mb">
   <div class="row g-4">
-    
     <!-- Row pertama -->
     <div class="col-sm-6 col-xl-4">
       <div class="bg-light rounded d-flex align-items-center p-4">
         <i class="fa-solid fa-user-doctor fa-3x text-primary"></i>
         <div class="ms-3">
           <p class="mb-2">Total Dokter</p>
-          <h6 class="mb-0"> </h6>
+          <h6 class="mb-0">{{ $totalDokter }}</h6>
         </div>
       </div>
     </div>
@@ -173,7 +174,7 @@
         <i class="fa-solid fa-user-nurse fa-3x text-primary"></i>
         <div class="ms-3">
           <p class="mb-2">Total Perawat</p>
-          <h6 class="mb-0"> </h6>
+          <h6 class="mb-0">{{ $totalPerawat }}</h6>
         </div>
       </div>
     </div>
@@ -182,7 +183,7 @@
         <i class="fa-solid fa-user fa-3x text-primary"></i>
         <div class="ms-3">
           <p class="mb-2">Total Pasien</p>
-          <h6 class="mb-0"></h6>
+          <h6 class="mb-0">{{ $totalPasien }}</h6>
         </div>
       </div>
     </div>
@@ -192,8 +193,8 @@
       <div class="bg-light rounded d-flex align-items-center p-4">
         <i class="fa-solid fa-cash-register fa-3x text-primary"></i>
         <div class="ms-3">
-          <p class="mb-2">Pembayaran</p>
-          <h6 class="mb-0"> </h6>
+          <p class="mb-2">Total Pembayaran</p>
+          <h6 class="mb-0">{{ $totalPembayaran }}</h6>
         </div>
       </div>
     </div>
@@ -201,8 +202,8 @@
       <div class="bg-light rounded d-flex align-items-center p-4">
         <i class="fa-solid fa-file-medical fa-3x text-primary"></i>
         <div class="ms-3">
-          <p class="mb-2">Rekam Medis</p>
-          <h6 class="mb-0"> </h6>
+          <p class="mb-2">Total Rekam Medis</p>
+          <h6 class="mb-0">{{ $totalRekamMedis }}</h6>
         </div>
       </div>
     </div>
@@ -210,13 +211,34 @@
       <div class="bg-light rounded d-flex align-items-center p-4">
         <i class="fa-solid fa-user-tie fa-3x text-primary"></i>
         <div class="ms-3">
-          <p class="mb-2">Kasir</p>
-          <h6 class="mb-0"> </h6>
+          <p class="mb-2">Total Kasir</p>
+          <h6 class="mb-0">{{ $totalKasir }}</h6>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Row ketiga -->
+    <div class="col-sm-6 col-xl-4">
+      <div class="bg-light rounded d-flex align-items-center p-4">
+        <i class="fa-solid fa-capsules fa-3x text-primary"></i>
+        <div class="ms-3">
+          <p class="mb-2">Total Obat</p>
+          <h6 class="mb-0">{{ $totalObat }}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-4">
+      <div class="bg-light rounded d-flex align-items-center p-4">
+      <i class="fa-solid fa-users fa-3x text-primary"></i>
+        <div class="ms-3">
+          <p class="mb-2">Total User</p>
+          <h6 class="mb-0">{{ $totalUser }}</h6>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 
 
