@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+
+
 
 //LOGIN
 Route::get('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
