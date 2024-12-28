@@ -21,6 +21,16 @@ class RekamMedisController extends Controller
         // Mengirim data ke view
         return view('rekam_medis.index', compact('rekam_medis'));
     }
+
+    public function index_rekam_medis()
+    {
+        // Mengambil data dokter dari database
+        $rekam_medis = RekamMedis::all(); // Mengambil semua data dari tabel rekam_medis
+    
+        // Mengirim data ke view
+        return view('customer.rekam_medis', compact('rekam_medis'));
+    }
+
     // use Carbon\Carbon; // Pastikan Anda sudah mengimport Carbon
 
     public function create()

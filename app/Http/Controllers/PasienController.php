@@ -19,6 +19,19 @@ class PasienController extends Controller
         // Mengirim data ke view
         return view('pasien.index', compact('pasien'));
     }
+
+    public function informasi_pasien()
+    {
+        // Mengambil data pasien dari database
+        $pasien = Pasien::all(); // Mengambil semua data dari tabel pasien
+    
+        // return view('admin/pasien');
+    
+        // Mengirim data ke view
+        return view('customer.informasi_pasien', compact('pasien'));
+    }
+
+    
     public function create()
     {
         return view('pasien.create');
