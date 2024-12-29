@@ -12,21 +12,27 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-    if (!$request->expectsJson()) {
-        $user = auth()->user();
-        session()->flash('error', 'Anda harus login untuk mengakses halaman ini.');
-
-        if ($user && $user->role === 'admin') {
-            return '/admin'; // Route untuk admin
+        if (!$request->expectsJson()) {
+            // Tambahkan pesan error ke sesi
+            session()->flash('error', 'Anda harus login untuk mengakses halaman ini.');
+    
+            // Periksa apakah pengguna telah login
+            if (auth()->check()) {
+                $user = auth()->user();
+    
+                if ($user->role === 'admin') {
+                    return '/admin'; // Arahkan ke halaman admin
+                }
+    
+                if ($user->role === 'user') {
+                    return '/customer/informasi_pasien'; // Arahkan ke halaman user
+                }
+            }
+    
+            // Jika tidak login, arahkan ke halaman login
+            return route('login');
         }
-
-        if ($user && $user->role === 'user') {
-            return '/customer/informasi_pasien'; // Route untuk user
-        }
-
-        return route('login');
-     }
-
-    return null;
-    }
+    
+        return null;
+    }    
 }

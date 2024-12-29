@@ -15,7 +15,7 @@
             <hr>
             @if(session('error'))
             <div class="alert alert-danger">
-                <b>Opps!</b> {{session('error')}}
+                <b>Oops!</b> {{session('error')}}
             </div>
             @endif
             <form action="{{ route('actionlogin') }}" method="post">

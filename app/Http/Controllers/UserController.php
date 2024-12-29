@@ -17,6 +17,11 @@ class UserController extends Controller
         // Mengirim data ke view
         return view('user.index', compact('user'));
     }
+    public function info()
+    {
+        $user = User::where('role', 'user')->get(); // Sesuaikan query ini
+        return view('customer.informasi_pasien', compact('user'));
+    }
     public function create()
     {
         return view('user.create');
