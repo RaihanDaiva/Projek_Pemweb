@@ -20,6 +20,13 @@ return new class extends Migration
             $table->string('no_telp', 20);
             $table->string('riwayat_penyakit', 50);
             $table->string('riwayat_pengobatan', 50);
+
+            $table->unsignedBigInteger('id')->nullable();
+
+            $table->foreign('id')
+                  ->references('id')->on('users')
+                  ->onUpdate('cascade')
+                  ->onDelete('restrict');
         });
     }
 
@@ -28,6 +35,11 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('pasien', function (Blueprint $table) {
+            // Hapus foreign key
+            $table->dropForeign(['id']);
+        });
+
         Schema::dropIfExists('pasien');
     }
 };

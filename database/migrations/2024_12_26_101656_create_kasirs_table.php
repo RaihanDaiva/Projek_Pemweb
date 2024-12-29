@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_kasir');
             $table->string('nama_kasir', 50);
             $table->string('jadwal_kerja', 50);
-            $table->string('kontak', 20);
+            $table->string('kontak', 20)->unique();
         });
     }
 
