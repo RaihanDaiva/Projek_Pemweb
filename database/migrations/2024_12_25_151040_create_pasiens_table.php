@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('pasien', function (Blueprint $table) {
             $table->id('id_pasien');
-            $table->string('nama_pasien', 50);
-            $table->date('tanggal_lahir');
-            $table->enum('jenis_kelamin', ['L', 'P']);
-            $table->string('alamat', 50);
-            $table->string('no_telp', 20);
-            $table->string('riwayat_penyakit', 50);
-            $table->string('riwayat_pengobatan', 50);
+            $table->string('nama_pasien', 50)->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
+            $table->string('alamat', 50)->nullable();
+            $table->string('no_telp', 20)->nullable();
+            $table->string('riwayat_penyakit', 50)->nullable();
+            $table->string('riwayat_pengobatan', 50)->nullable();
 
             $table->unsignedBigInteger('id')->nullable();
 

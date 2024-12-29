@@ -166,8 +166,7 @@
                                                     <tbody>
                                                         @foreach ($rekam_medis as $index => $p)
                                                         <tr class="data">
-                                                            <td class="text-dark">{{ $index + 1 }}</td>
-                                                           
+                                                            <td class="text-dark">{{ $index + 1 }}</td>                                                           
                                                             <td class="text-dark">
                                                                 {{ $p->dokter->nama_dokter ?? 'Tidak Ditemukan' }}
                                                             </td>
