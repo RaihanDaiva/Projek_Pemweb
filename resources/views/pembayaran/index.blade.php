@@ -83,7 +83,7 @@
 
                 <div class="navbar-nav w-100">
                     <a href="/admin" class="nav-item nav-link">
-                        <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+                        <i class="fa fa-tachometer-alt me-2"></i>Dashboard Admin
                     </a>
 
                     <div class="nav-item dropdown">
@@ -175,6 +175,7 @@
                                                     <thead style="background-color: #002d72;">
                                                         <tr class="judul-tabel">
                                                             <th scope="col">No</th>
+                                                            <th scope="col">ID</th>
                                                             <th scope="col">Waktu Pembayaran</th>
                                                             <th scope="col">Status</th>
                                                             <th scope="col">Jumlah</th>
@@ -182,6 +183,7 @@
                                                             <th scope="col">No Pasien</th>
                                                             <th scope="col">No Kasir</th>
                                                             <th scope="col">No Obat</th>
+                                                            <th scope="col">Jumlah Obat</th>
                                                             <th scope="col" class="text-align">Aksi</th>
                                                         </tr>
                                                     </thead>
@@ -189,6 +191,7 @@
                                                         @foreach ($pembayaran as $index => $p)
                                                         <tr class="data">
                                                             <td class="text-dark">{{ $index + 1 }}</td>
+                                                            <td class="text-dark">{{ $p->id_pembayaran }}</td>
                                                             <td class="text-dark">{{ $p->waktu_pembayaran }}</td>
                                                             <!-- Tambahkan kelas dinamis untuk status -->
                                                             <td class="{{ $p->status_pembayaran === 'Belum' ? 'text-danger' : 'text-success' }}">
@@ -205,6 +208,7 @@
                                                             <td class="text-dark">
                                                                 {{ $p->id_obat }} - {{ $p->obat->nama_obat ?? 'Tidak Ditemukan' }}
                                                             </td>
+                                                            <td class="text-dark">{{ $p->jumlah_obat }}</td>
                                                             <td>
                                                                 <a href="{{ route('pembayaran.edit', $p->id_pembayaran) }}" style="background-color: #002d72;" class="btn btn-sm">
                                                                     <i class="fa-solid fa-pen-to-square" style="color: #ffffff"></i>
@@ -215,10 +219,20 @@
                                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                                                                 </form>
                                                                 @if ($p->status_pembayaran === 'Belum')
+                                                                    <!-- Tombol untuk mengubah status menjadi Lunas -->
                                                                     <form action="{{ route('pembayaran.updateStatus', $p->id_pembayaran) }}" method="POST" style="display:inline;">
                                                                         @csrf
                                                                         @method('PUT')
+                                                                        <input type="hidden" name="status" value="Lunas">
                                                                         <button type="submit" class="btn btn-success btn-sm"><i class="fa-solid fa-check"></i></button>
+                                                                    </form>
+                                                                @elseif ($p->status_pembayaran === 'Lunas')
+                                                                    <!-- Tombol untuk mengubah status menjadi Belum -->
+                                                                    <form action="{{ route('pembayaran.updateStatus', $p->id_pembayaran) }}" method="POST" style="display:inline;">
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <input type="hidden" name="status" value="Belum">
+                                                                        <button type="submit" class="btn btn-warning btn-sm"><i class="fa-solid fa-undo"></i></button>
                                                                     </form>
                                                                 @endif
                                                             </td>

@@ -21,6 +21,7 @@ class Pembayaran extends Model
         'id_pasien',
         'id_kasir',
         'id_obat',
+        'jumlah_obat', // Tambahkan jika belum ada
     ];
 
     // Relasi ke model Pasien
@@ -40,5 +41,28 @@ class Pembayaran extends Model
     {
         return $this->belongsTo(Obat::class, 'id_obat', 'id_obat');
     }
-}
 
+    // Event Eloquent
+    public static function boot()
+    {
+        parent::boot();
+
+        // Event before insert
+        static::creating(function ($pembayaran) {
+            $pembayaran->jumlah_pembayaran = self::calculateJumlahPembayaran($pembayaran->jumlah_obat, $pembayaran->id_obat);
+        });
+
+        // Event before update
+        static::updating(function ($pembayaran) {
+            $pembayaran->jumlah_pembayaran = self::calculateJumlahPembayaran($pembayaran->jumlah_obat, $pembayaran->id_obat);
+        });
+    }
+
+    // Fungsi untuk menghitung jumlah pembayaran
+    public static function calculateJumlahPembayaran($jumlah_obat, $id_obat)
+    {
+        // Pastikan model Obat digunakan di namespace yang sesuai
+        $harga_obat = Obat::find($id_obat)->harga_obat ?? 0;
+        return $jumlah_obat * $harga_obat;
+    }
+}

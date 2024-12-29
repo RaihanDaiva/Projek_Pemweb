@@ -56,7 +56,7 @@
 
                 <div class="navbar-nav w-100">
                     <a href="/admin" class="nav-item nav-link">
-                        <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+                        <i class="fa fa-tachometer-alt me-2"></i>Dashboard Admin
                     </a>
 
                     <div class="nav-item dropdown">
@@ -171,24 +171,17 @@
         <tr>
             <td>Status</td>
             <td>
-                <select class="form-control" name="status_pembayaran" required>
+                <select class="form-control" style="background-color: white;" name="status_pembayaran" required>
                     <option value="">Pilih Status</option>
                     <option value="Lunas">Lunas</option>
                     <option value="Belum">Belum</option>
                 </select>
             </td>
-        </tr>
-        <tr>
-            <td>Jumlah</td>
-            <td>
-                <input type="text" class="form-control" name="jumlah_pembayaran" required>
-            </td>
-        </tr>
-        
+        </tr>        
         <tr>
             <td>Metode</td>
             <td>
-                <select class="form-control" name="metode_pembayaran" required>
+                <select class="form-control" style="background-color: white;" name="metode_pembayaran" required>
                     <option value="">Pilih Metode</option>
                     <option value="Tunai">Tunai</option>
                     <option value="Non-Tunai">Non-Tunai</option>
@@ -199,7 +192,7 @@
         <tr>
             <td>No Pasien</td>
             <td>
-                <select class="form-control" name="id_pasien" required>
+                <select class="form-control" style="background-color: white;" name="id_pasien" required>
                     <option value="">Pilih Pasien</option>
                     @foreach($pasienList as $pasien)
                         <option value="{{ $pasien->id_pasien }}">
@@ -213,7 +206,7 @@
         <tr>
             <td>No Kasir</td>
             <td>
-                <select class="form-control" name="id_kasir" required>
+                <select class="form-control" style="background-color: white;" name="id_kasir" required>
                     <option value="">Pilih Kasir</option>
                     @foreach($kasirList as $kasir)
                         <option value="{{ $kasir->id_kasir }}">
@@ -227,7 +220,7 @@
         <tr>
             <td>No Obat</td>
             <td>
-                <select class="form-control" name="id_obat" required>
+                <select class="form-control" style="background-color: white;" name="id_obat" required>
                     <option value="">Pilih Obat</option>
                     @foreach($obatList as $obat)
                         <option value="{{ $obat->id_obat }}">
@@ -237,7 +230,13 @@
                 </select>
             </td>
         </tr>
-        
+        <tr>
+            <td>Jumlah Obat</td>
+            <td>
+                <input type="number" class="form-control" name="jumlah_obat" required 
+                    min="1" placeholder="Masukkan jumlah obat">
+            </td>
+        </tr>
         <tr>
             <td></td>
             <td class="pt-3">
