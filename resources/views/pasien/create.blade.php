@@ -204,6 +204,19 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>No User</td>
+                                <td>
+                                    <select class="form-control" style="background-color: white;" name="id" required>
+                                        <option value="">Pilih User</option>
+                                        @foreach($userList as $user)
+                                            <option value="{{ $user->id }}">
+                                                {{ $user->id }} - {{ $user->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td></td>
                                 <td class="pt-3">
                                     <div class="d-flex justify-content-center gap-2">

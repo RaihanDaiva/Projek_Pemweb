@@ -19,5 +19,12 @@ class Pasien extends Model
         'no_telp',
         'riwayat_penyakit',
         'riwayat_pengobatan',
+        'id',
     ];
+
+    #relasi ke model user
+    public function user()
+    {
+    return $this->belongsTo(User::class, 'id'); // Relasi kebalikannya
+    }
 }

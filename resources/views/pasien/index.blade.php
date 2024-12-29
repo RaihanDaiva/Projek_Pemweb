@@ -185,6 +185,7 @@
                                                             <th scope="col">No Telfon</th>
                                                             <th scope="col">Rwyt Penyakit</th>
                                                             <th scope="col">Rwyt Pengobatan</th>
+                                                            <th scope="col">No User</th>
                                                             <th scope="col" class="text-align">Aksi</th>
                                                         </tr>
                                                     </thead>
@@ -200,6 +201,7 @@
                                                             <td class="text-dark">{{ $p->no_telp }}</td>
                                                             <td class="text-dark">{{ $p->riwayat_penyakit }}</td>
                                                             <td class="text-dark">{{ $p->riwayat_pengobatan }}</td>
+                                                            <td class="text-dark">{{ $p->id }}</td>
                                                             <td>
                                                                 <!-- Aksi seperti Edit atau Hapus -->
                                                                 <a href="{{ route('pasien.edit', $p->id_pasien) }}" style="background-color: #002d72;" class="btn btn-sm"><i class="fa-solid fa-pen-to-square"

@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
     <meta charset="utf-8">
     <title>RST - Tabel Dokter</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -142,7 +147,8 @@
         <div class="d-flex justify-content-center mt-5">
                     <form method="POST" class="text-dark bg-light bg-gradient p-5 rounded-3" style="box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
                         -webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
-                        -moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);">
+                        -moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);"
+                        action="{{ route('pasien.datadiri', $pasien->id_pasien)}} " method="POST">
                         <h1 class="text-primary mb-5 d-flex justify-content-center">Data Diri</h1>
                         @csrf
                         <table>

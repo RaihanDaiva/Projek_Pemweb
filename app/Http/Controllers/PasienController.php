@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Database\QueryException; // Untuk menangani error saat penghapusan
 use App\Models\Pasien;
+use App\Models\User;
 use Illuminate\Http\Request;
 use View;
 
@@ -34,7 +35,8 @@ class PasienController extends Controller
     
     public function create()
     {
-        return view('pasien.create');
+        $userList = User::all();
+        return view('pasien.create', compact('userList'));
     }
 
     public function store(Request $request)
@@ -47,7 +49,8 @@ class PasienController extends Controller
             'alamat'     => 'required|max:50',
             'no_telp'     => 'required|max:20',
             'riwayat_penyakit'     => 'required|max:50',
-            'riwayat_pengobatan'     => 'required|max:50'
+            'riwayat_pengobatan'     => 'required|max:50',
+            'id'    => 'required',
         ]);
 
         //create post
@@ -58,7 +61,8 @@ class PasienController extends Controller
             'alamat'   => $request->alamat,
             'no_telp'   => $request->no_telp,
             'riwayat_penyakit'   => $request->riwayat_penyakit,
-            'riwayat_pengobatan'   => $request->riwayat_pengobatan
+            'riwayat_pengobatan'   => $request->riwayat_pengobatan,
+            'id' => $request->id,
         ]);
 
         //redirect to index
@@ -70,13 +74,46 @@ class PasienController extends Controller
     {
         //get post by ID
         $pasien = Pasien::where('id_pasien', $id)->firstOrFail();
-
+        $userList = User::all();
 
         //render view with post
-        return view('pasien.edit', compact('pasien'));
+        return view('pasien.edit', compact('pasien', 'userList'));
     }
 
     public function update(Request $request, $id)
+    {
+        // Validate form
+        $this->validate($request, [
+            'nama_pasien'     => 'required|max:50',
+            'tanggal_lahir'   => 'required|max:50',
+            'jenis_kelamin'   => 'required',
+            'alamat'          => 'required|max:50',
+            'no_telp'         => 'required|max:20',
+            'riwayat_penyakit'=> 'required|max:50',
+            'riwayat_pengobatan' => 'required|max:50',
+            'id' => 'required',
+        ]);
+    
+        // Get pasien by ID
+        $pasien = Pasien::where('id_pasien', $id)->firstOrFail();
+    
+        // Update pasien data
+        $pasien->update([
+            'nama_pasien'     => $request->input('nama_pasien'),
+            'tanggal_lahir'   => $request->input('tanggal_lahir'),
+            'jenis_kelamin'   => $request->input('jenis_kelamin'),
+            'alamat'          => $request->input('alamat'),
+            'no_telp'         => $request->input('no_telp'),
+            'riwayat_penyakit'=> $request->input('riwayat_penyakit'),
+            'riwayat_pengobatan' => $request->input('riwayat_pengobatan'),
+            'id' => $request->input('id'),
+        ]);
+    
+        // Redirect to index with success message
+        return redirect()->route('pasien.index')->with(['success' => 'Data Berhasil Diubah!']);
+    }
+    
+    public function update_pasien(Request $request, $id)
     {
         // Validate form
         $this->validate($request, [
@@ -104,9 +141,8 @@ class PasienController extends Controller
         ]);
     
         // Redirect to index with success message
-        return redirect()->route('pasien.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('customer.informasi_pasien')->with(['success' => 'Data Berhasil Diubah!']);
     }
-    
 
     public function destroy($id)
     {
