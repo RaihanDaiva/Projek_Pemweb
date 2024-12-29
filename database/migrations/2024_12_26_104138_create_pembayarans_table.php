@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('status_pembayaran', ['Lunas', 'Belum']);
             $table->decimal('jumlah_pembayaran', 15, 0);
             $table->enum('metode_pembayaran', ['Tunai', 'Non-Tunai']);
+            $table->bigInteger('jumlah_obat');
 
             // Tambahkan kolom foreign key terlebih dahulu
             $table->unsignedBigInteger('id_pasien')->nullable();

@@ -38,11 +38,12 @@ class PembayaranController extends Controller
             'tanggal'              => 'required|date',  // Validasi tanggal
             'waktu'                => 'required|date_format:H:i:s',  // Validasi waktu
             'status_pembayaran'    => 'required',
-            'jumlah_pembayaran'    => 'required|numeric',
+            'jumlah_pembayaran'    => 'nullable|numeric',
             'metode_pembayaran'    => 'required',
             'id_pasien'            => 'required|',
             'id_kasir'             => 'required|',
             'id_obat'              => 'required|',
+            'jumlah_obat'          => 'required',
         ]);
 
         // Gabungkan tanggal dan waktu menjadi format datetime
@@ -52,11 +53,13 @@ class PembayaranController extends Controller
         Pembayaran::create([
             'waktu_pembayaran'     => $waktu_pembayaran,   // Menyimpan datetime yang digabung
             'status_pembayaran'    => $request->status_pembayaran,
-            'jumlah_pembayaran'    => $request->jumlah_pembayaran,
+            'jumlah_pembayaran'    => $request->jumlah_pembayaran ?? 0, // Default ke 0 jika tidak diisi
             'metode_pembayaran'    => $request->metode_pembayaran,
             'id_pasien'            => $request->id_pasien,
             'id_kasir'             => $request->id_kasir,
             'id_obat'              => $request->id_obat,
+            'jumlah_obat'          => $request->jumlah_obat,
+            
         ]);
 
         // Redirect ke halaman index dengan pesan sukses
@@ -84,11 +87,12 @@ class PembayaranController extends Controller
             'tanggal'              => 'required|date',
             'waktu'                => 'required|date_format:H:i:s',
             'status_pembayaran'    => 'required',
-            'jumlah_pembayaran'    => 'required|numeric',
+            'jumlah_pembayaran'    => 'nullable|numeric',
             'metode_pembayaran'    => 'required',
             'id_pasien'            => 'required|',
             'id_kasir'             => 'required|', // Sesuaikan dengan tabel kasir
             'id_obat'              => 'required|', // Sesuaikan dengan tabel obat
+            'jumlah_obat'          => 'required',
         ]);
 
         // Gabungkan tanggal dan waktu menjadi format datetime
@@ -101,11 +105,12 @@ class PembayaranController extends Controller
         $pembayaran->update([
             'waktu_pembayaran'     => $waktu_pembayaran,
             'status_pembayaran'    => $request->status_pembayaran,
-            'jumlah_pembayaran'    => $request->jumlah_pembayaran,
+            'jumlah_pembayaran'    => $request->jumlah_pembayaran ?? $pembayaran->jumlah_pembayaran, // Pertahankan nilai jika tidak diisi
             'metode_pembayaran'    => $request->metode_pembayaran,
             'id_pasien'            => $request->id_pasien,
             'id_kasir'             => $request->id_kasir,
             'id_obat'              => $request->id_obat,
+            'jumlah_obat'          => $request->jumlah_obat,
         ]);
 
         // Redirect kembali ke index dengan pesan sukses
@@ -126,10 +131,10 @@ class PembayaranController extends Controller
         return redirect()->route('pembayaran.index')->with('success', 'Data pembayaran berhasil dihapus.');
     }
 
-    public function updateStatus($id)
+    public function updateStatus(Request $request, $id)
     {
         $pembayaran = Pembayaran::findOrFail($id);
-        $pembayaran->status_pembayaran = 'Lunas';
+        $pembayaran->status_pembayaran = $request->status;
         $pembayaran->save();
 
         return redirect()->route('pembayaran.index')->with('success', 'Status pembayaran berhasil diperbarui!');
