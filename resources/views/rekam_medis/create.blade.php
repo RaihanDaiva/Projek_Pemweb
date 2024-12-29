@@ -150,98 +150,91 @@
             <!-- Navbar End -->
 
                 <div class="d-flex justify-content-center mt-5">
-                <form action="{{ route('rekam_medis.store') }}" method="POST" class="text-dark bg-light bg-gradient p-5 rounded-3" style="box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
--webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
--moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);">
-    <h1 class="text-primary mb-5 d-flex justify-content-center">Tambah Data</h1>
-    @csrf
-    <table>
-        <tr>
-            <td>No Pasien</td>
-            <td>
-                <select class="form-control" name="id_pasien" required>
-                    <option value="">Pilih Pasien</option>
-                    @foreach($pasienList as $pasien)
-                        <option value="{{ $pasien->id_pasien }}">
-                            {{ $pasien->id_pasien }} - {{ $pasien->nama_pasien }}
-                        </option>
-                    @endforeach
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>No Dokter</td>
-            <td>
-                <select class="form-control" name="id_dokter" required>
-                    <option value="">Pilih dokter</option>
-                    @foreach($dokterList as $dokter)
-                        <option value="{{ $dokter->id_dokter }}">
-                            {{ $dokter->id_dokter }} - {{ $dokter->nama_dokter }}
-                        </option>
-                    @endforeach
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Diagnosa</td>
-            <td>
-                <input type="text" class="form-control" name="diagnosa" required>
-            </td>
-        </tr>
-        <tr>
-            <td>Tgl Kunjungan</td>
-            <td>
-                <div style="display: flex; gap: 10px;">
-                    <!-- Input untuk tanggal -->
-                    <input class="form-control" type="date" name="tanggal_kunjungan" required>
+                    <form action="{{ route('rekam_medis.store') }}" method="POST" class="text-dark bg-light bg-gradient p-5 rounded-3" style="box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
+                        -webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
+                        -moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);">
+                        <h1 class="text-primary mb-5 d-flex justify-content-center">Tambah Data</h1>
+                        @csrf
+                        <table>
+                            <tr>
+                                <td>No Pasien</td>
+                                <td>
+                                    <select class="form-control" name="id_pasien" required>
+                                        <option value="">Pilih Pasien</option>
+                                        @foreach($pasienList as $pasien)
+                                            <option value="{{ $pasien->id_pasien }}">
+                                                {{ $pasien->id_pasien }} - {{ $pasien->nama_pasien }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>No Dokter</td>
+                                <td>
+                                    <select class="form-control" name="id_dokter" required>
+                                        <option value="">Pilih dokter</option>
+                                        @foreach($dokterList as $dokter)
+                                            <option value="{{ $dokter->id_dokter }}">
+                                                {{ $dokter->id_dokter }} - {{ $dokter->nama_dokter }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Diagnosa</td>
+                                <td>
+                                    <input type="text" class="form-control" name="diagnosa" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tgl Kunjungan</td>
+                                <td>
+                                    <div style="display: flex; gap: 10px;">
+                                        <!-- Input untuk tanggal -->
+                                        <input class="form-control" type="date" name="tanggal_kunjungan" required>
+                                    </div>
+                                </td>
+                            </tr>   
+                            <tr>
+                                <td>Tindakan Medis</td>
+                                <td>
+                                    <input type="text" class="form-control" name="tindakan_medis" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>No Obat</td>
+                                <td>
+                                    <select class="form-control" name="id_obat" required>
+                                        <option value="">Pilih Obat</option>
+                                        @foreach($obatList as $obat)
+                                            <option value="{{ $obat->id_obat }}">
+                                                {{ $obat->id_obat }} - {{ $obat->nama_obat }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="pt-3">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <button type="submit" style="width: 100px;" 
+                                                class="btn border border-primary btn-block btns-hover">
+                                            SIMPAN
+                                        </button>
+                                        <button type="button" style="width: 100px;" 
+                                                class="btn border-danger btn-block btnb-hover" 
+                                                onclick="window.location.href='{{ route('rekam_medis.index') }}';">
+                                            BATAL
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
                 </div>
-            </td>
-        </tr>   
-        <tr>
-            <td>Tindakan Medis</td>
-            <td>
-                <input type="text" class="form-control" name="tindakan_medis" required>
-            </td>
-        </tr>
-        <tr>
-            <td>No Obat</td>
-            <td>
-                <select class="form-control" name="id_obat" required>
-                    <option value="">Pilih Obat</option>
-                    @foreach($obatList as $obat)
-                        <option value="{{ $obat->id_obat }}">
-                            {{ $obat->id_obat }} - {{ $obat->nama_obat }}
-                        </option>
-                    @endforeach
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td class="pt-3">
-                <div class="d-flex justify-content-center gap-2">
-                    <button type="submit" style="width: 100px;" 
-                            class="btn border border-primary btn-block btns-hover">
-                        SIMPAN
-                    </button>
-                    <button type="button" style="width: 100px;" 
-                            class="btn border-danger btn-block btnb-hover" 
-                            onclick="window.location.href='{{ route('rekam_medis.index') }}';">
-                        BATAL
-                    </button>
-                </div>
-            </td>
-        </tr>
-    </table>
-</form>
-
-
-
-            <!-- Form Ubah Start -->
-
-            <!-- Form Ubah End -->
-
-        </div>
 
 
         <!-- Content End -->

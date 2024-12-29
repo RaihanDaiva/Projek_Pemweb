@@ -15,10 +15,19 @@ class PembayaranController extends Controller
     public function index()
     {
         // Mengambil data dokter dari database
-        $pembayaran = pembayaran::all(); // Mengambil semua data dari tabel pembayaran
+        $pembayaran = Pembayaran::all(); // Mengambil semua data dari tabel pembayaran
     
         // Mengirim data ke view
         return view('pembayaran.index', compact('pembayaran'));
+    }
+
+    public function index_customer()
+    {
+        // Mengambil data dokter dari database
+        $pembayaran = Pembayaran::all(); // Mengambil semua data dari tabel pembayaran
+    
+        // Mengirim data ke view
+        return view('customer.pembayaran', compact('pembayaran'));
     }
     // use Carbon\Carbon; // Pastikan Anda sudah mengimport Carbon
 

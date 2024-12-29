@@ -49,7 +49,7 @@
                 <div class="form-group">
                     <label><i class="fa fa-key"></i> Password</label>
                     <input type="password" name="password" class="form-control" placeholder="Password" required="">
-                    <input type="text" name="role" class="form-control" value="admin">
+                    <input type="text" name="role" class="form-control" value="admin" readonly>
                 </div>
                 <!-- <div class="form-group">
                     <label><i class="fa fa-address-book"></i> Role</label>
