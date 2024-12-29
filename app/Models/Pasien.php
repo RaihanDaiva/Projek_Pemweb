@@ -12,6 +12,7 @@ class Pasien extends Model
     protected $table = 'pasien';
     public $timestamps = false;
     protected $fillable = [
+        'id', //foreign key
         'nama_pasien',
         'tanggal_lahir',
         'jenis_kelamin',
@@ -20,4 +21,11 @@ class Pasien extends Model
         'riwayat_penyakit',
         'riwayat_pengobatan',
     ];
+
+    #relasi ke model user
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id'); // 'id' di pasien, 'id' di users
+    }
+    
 }

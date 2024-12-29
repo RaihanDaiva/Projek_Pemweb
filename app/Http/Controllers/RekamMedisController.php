@@ -13,6 +13,23 @@ use View;
 
 class RekamMedisController extends Controller
 {
+    public function index_rekam_medis()
+    {
+        $user = Auth::user();
+
+        // Menggunakan relasi pasien() untuk mengambil data pasien yang terkait dengan user
+        $pasien = $user->pasien;  // Relasi yang sudah didefinisikan di model User
+
+        if (!$pasien) {
+            abort(404, 'Pasien tidak ditemukan!');
+        }
+        // Fetch the Pembayaran based on the id_pasien from the Pasien model
+        $rekam_medis = RekamMedis::where('id_pasien', $pasien->id_pasien)->get();  // Access id_pasien here
+
+        // Send data to the view
+        return view('customer.rekam_medis', compact('rekam_medis'));
+    }
+
     public function index()
     {
         // Mengambil data dokter dari database
@@ -57,8 +74,6 @@ class RekamMedisController extends Controller
         // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('rekam_medis.index')->with(['success' => 'Data Rekam Medis Berhasil Disimpan!']);
     }
-
-
 
     public function edit(string $id)
     {

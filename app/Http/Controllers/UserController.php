@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Pasien;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use View;
@@ -24,7 +25,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        //validate form
+        //Validasi data
         $this->validate($request, [
             'name' => 'required|string|max:255', // Pastikan kolom 'name' diisi
             'email' => 'required|email|unique:users',
@@ -32,16 +33,26 @@ class UserController extends Controller
             'role' => 'required',
         ]);
         
-        //create post
-        User::create([
+        //buat user baru
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role,
-            'active' => 1
         ]);
 
-        //redirect to index
+        // Jika role adalah 'user', buat record di tabel pasien
+        if ($request->role === 'user') {
+            $pasien = Pasien::create([
+                'id' => $user->id, // Foreign key ke tabel users
+            ]);
+
+            if (!$pasien) {
+                dd('Pasien gagal dibuat.');
+            }
+        }
+    
+        // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('user.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
@@ -84,8 +95,6 @@ class UserController extends Controller
         return redirect()->route('user.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
     
-    
-
     public function destroy($id)
     {
         // Temukan user berdasarkan ID
