@@ -110,3 +110,8 @@ Route::get('/user/{id}/update', [\App\Http\Controllers\UserController::class, 'e
 Route::put('/user/{id}/update', [\App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 Route::delete('/user/{id}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');
 Route::get('actionlogout', [\App\Http\Controllers\LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
+
+//Tabel Customer
+route::get('customer/pembayaran', [\App\Http\Controllers\PembayaranController::class, 'index_customer'])->name('customer.pembayaran');
+route::get('customer/rekam_medis', [\App\Http\Controllers\RekamMedisController::class, 'index_rekam_medis'])->name('customer.rekam_medis');
+route::get('customer/informasi_pasien', [\App\Http\Controllers\PasienController::class, 'informasi_pasien'])->name('customer.informasi_pasien');
