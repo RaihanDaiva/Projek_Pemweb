@@ -85,7 +85,7 @@
 
                 <div class="navbar-nav w-100">
                     <a href="/admin" class="nav-item nav-link">
-                        <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+                        <i class="fa fa-tachometer-alt me-2"></i>Dashboard Admin
                     </a>
 
                     <div class="nav-item dropdown">
@@ -177,6 +177,7 @@
                                                     <thead style="background-color: #002d72;">
                                                         <tr class="judul-tabel">
                                                             <th scope="col">No</th>
+                                                            <th scope="col">ID</th>
                                                             <th scope="col">Nama</th>
                                                             <th scope="col">Tgl Lahir</th>
                                                             <th scope="col">J. Kelamin</th>
@@ -191,6 +192,7 @@
                                                         @foreach ($pasien as $index => $p)
                                                         <tr class="data">
                                                             <td class="text-dark">{{ $index + 1 }}</td>
+                                                            <td class="text-dark">{{ $p->id_pasien }}</td>
                                                             <td class="text-dark">{{ $p->nama_pasien }}</td>
                                                             <td class="text-dark">{{ $p->tanggal_lahir }}</td>
                                                             <td class="text-dark">{{ $p->jenis_kelamin }}</td>

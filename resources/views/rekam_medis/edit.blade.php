@@ -56,7 +56,7 @@
 
                 <div class="navbar-nav w-100">
                     <a href="/admin" class="nav-item nav-link">
-                        <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+                        <i class="fa fa-tachometer-alt me-2"></i>Dashboard Admin
                     </a>
 
                     <div class="nav-item dropdown">
@@ -160,7 +160,7 @@
                             <tr>
                                 <td>No Pasien</td>
                                 <td>
-                                <select class="form-control" name="id_pasien" required>
+                                <select class="form-control" style="background-color: white;" name="id_pasien" required>
                                     <option value="">Pilih Pasien</option>
                                     @foreach($pasienList as $pasien)
                                         <option value="{{ $pasien->id_pasien }}" {{ $rekam_medis->id_pasien == $pasien->id_pasien ? 'selected' : '' }}>
@@ -173,7 +173,7 @@
                             <tr>
                                 <td>No Dokter</td>
                                 <td>
-                                <select class="form-control" name="id_dokter" required>
+                                <select class="form-control" style="background-color: white;" name="id_dokter" required>
                                     <option value="">Pilih dokter</option>
                                     @foreach($dokterList as $dokter)
                                         <option value="{{ $dokter->id_dokter }}" {{ $rekam_medis->id_dokter == $dokter->id_dokter ? 'selected' : '' }}>
@@ -209,7 +209,7 @@
                             <tr>
                                 <td>No Obat</td>
                                 <td>
-                                <select class="form-control" name="id_obat" required>
+                                <select class="form-control" style="background-color: white;" name="id_obat" required>
                                     <option value="">Pilih Obat</option>
                                     @foreach($obatList as $obat)
                                         <option value="{{ $obat->id_obat }}" {{ $rekam_medis->id_obat == $obat->id_obat ? 'selected' : '' }}>

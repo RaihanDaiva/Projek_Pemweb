@@ -67,7 +67,7 @@
 
         <div class="navbar-nav w-100">
           <a href="#" class="nav-item nav-link active">
-            <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+            <i class="fa fa-tachometer-alt me-2"></i>Dashboard Admin
           </a>
 
           <div class="nav-item dropdown">
@@ -118,7 +118,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand bg-light navbar-light px-4 py-3">
       <div class="">
-        <h1 style="margin-bottom: 0px;" class="text-primary">Dashboard</h1>
+        <h1 style="margin-bottom: 0px;" class="text-primary"> <i class="fa fa-tachometer-alt"></i> Dashboard Admin</h1>
       </div>
 
       <div class="navbar-nav align-items-center ms-auto">

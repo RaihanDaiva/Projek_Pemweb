@@ -56,7 +56,7 @@
 
                 <div class="navbar-nav w-100">
                     <a href="/admin" class="nav-item nav-link">
-                        <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+                        <i class="fa fa-tachometer-alt me-2"></i>Dashboard Admin
                     </a>
 
                     <div class="nav-item dropdown">
@@ -177,7 +177,7 @@
                             <tr>
                                 <td>Status</td>
                                 <td>
-                                    <select class="form-control" name="status_pembayaran" required>
+                                    <select class="form-control" style="background-color: white;" name="status_pembayaran" required>
                                         <option value="Lunas" {{ $pembayaran->status_pembayaran === 'Lunas' ? 'selected' : '' }}>Lunas</option>
                                         <option value="Belum" {{ $pembayaran->status_pembayaran === 'Belum' ? 'selected' : '' }}>Belum</option>
                                     </select>
@@ -193,7 +193,7 @@
                             <tr>
                                 <td>Metode</td>
                                 <td>
-                                    <select class="form-control" name="metode_pembayaran" required>
+                                    <select class="form-control" style="background-color: white;" name="metode_pembayaran" required>
                                         <option value="Tunai" {{ $pembayaran->metode_pembayaran === 'Tunai' ? 'selected' : '' }}>Tunai</option>
                                         <option value="Non-Tunai" {{ $pembayaran->metode_pembayaran === 'Non-Tunai' ? 'selected' : '' }}>Non-Tunai</option>
                                     </select>
@@ -203,7 +203,7 @@
                             <tr>
                                 <td>No Pasien</td>
                                 <td>
-                                <select class="form-control" name="id_pasien" required>
+                                <select class="form-control" style="background-color: white;" name="id_pasien" required>
                                     <option value="">Pilih Pasien</option>
                                     @foreach($pasienList as $pasien)
                                         <option value="{{ $pasien->id_pasien }}" {{ $pembayaran->id_pasien == $pasien->id_pasien ? 'selected' : '' }}>
@@ -217,7 +217,7 @@
                             <tr>
                                 <td>No Kasir</td>
                                 <td>
-                                <select class="form-control" name="id_kasir" required>
+                                <select class="form-control" style="background-color: white;" name="id_kasir" required>
                                     <option value="">Pilih Kasir</option>
                                     @foreach($kasirList as $kasir)
                                         <option value="{{ $kasir->id_kasir }}" {{ $pembayaran->id_kasir == $kasir->id_kasir ? 'selected' : '' }}>
@@ -231,8 +231,8 @@
                             <tr>
                                 <td>No Obat</td>
                                 <td>
-                                <select class="form-control" name="id_obat" required>
-                                    <option value="">Pilih Obat</option>
+                                <select class="form-control" style="background-color: white;"name="id_obat" required>
+                                    <option value="">Pilih Ob at</option>
                                     @foreach($obatList as $obat)
                                         <option value="{{ $obat->id_obat }}" {{ $pembayaran->id_obat == $obat->id_obat ? 'selected' : '' }}>
                                             {{ $obat->id_obat }} - {{ $obat->nama_obat }}
