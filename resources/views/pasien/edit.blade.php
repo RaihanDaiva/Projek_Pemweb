@@ -151,8 +151,8 @@
 
                 <div class="d-flex justify-content-center mt-5">
                     <form action="{{ route('pasien.update', $pasien->id_pasien)}}" method="POST" class="text-dark bg-light bg-gradient p-5 rounded-3" style="box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
--webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
--moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);">
+                        -webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
+                        -moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);">
                         <h1 class="text-primary mb-5 d-flex justify-content-center">Ubah Data</h1>
                         @csrf
                         @method('PUT') <!-- Tambahkan jika menggunakan route dengan method PUT -->

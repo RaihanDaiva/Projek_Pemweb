@@ -110,4 +110,4 @@ Route::get('actionlogout', [\App\Http\Controllers\LoginController::class, 'actio
 //Tabel Customer
 route::get('customer/pembayaran', [\App\Http\Controllers\PembayaranController::class, 'index_customer'])->name('customer.pembayaran');
 route::get('customer/rekam_medis', [\App\Http\Controllers\RekamMedisController::class, 'index_rekam_medis'])->name('customer.rekam_medis');
-route::get('customer/informasi_pasien', [\App\Http\Controllers\PasienController::class, 'informasi_pasien'])->name('customer.informasi_pasien');
+Route::get('customer/informasi_pasien', [\App\Http\Controllers\PasienController::class, 'informasi_pasien'])->name('customer.informasi_pasien');

@@ -20,4 +20,7 @@ class Pasien extends Model
         'riwayat_penyakit',
         'riwayat_pengobatan',
     ];
+
+    #relasi ke model user
+    
 }

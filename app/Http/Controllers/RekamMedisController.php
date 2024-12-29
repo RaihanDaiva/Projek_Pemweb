@@ -9,10 +9,26 @@ use App\Models\Pasien;
 use App\Models\Pembayaran;
 use App\Models\RekamMedis;
 use Illuminate\Http\Request;
+use Auth;
 use View;
 
 class RekamMedisController extends Controller
 {
+    public function index_rekam_medis()
+    {
+        $user = Auth::user();
+        $idUser = $user->id;
+
+        // Fetch the Pasien model instance where the user ID matches
+        $pasien = Pasien::where('id_pasien', $idUser)->firstOrFail();  // Use firstOrFail to get a model instance or fail
+
+        // Fetch the Pembayaran based on the id_pasien from the Pasien model
+        $rekam_medis = RekamMedis::where('id_pasien', $pasien->id_pasien)->get();  // Access id_pasien here
+
+        // Send data to the view
+        return view('customer.rekam_medis', compact('rekam_medis'));
+    }
+
     public function index()
     {
         // Mengambil data dokter dari database
@@ -20,15 +36,6 @@ class RekamMedisController extends Controller
     
         // Mengirim data ke view
         return view('rekam_medis.index', compact('rekam_medis'));
-    }
-
-    public function index_rekam_medis()
-    {
-        // Mengambil data dokter dari database
-        $rekam_medis = RekamMedis::all(); // Mengambil semua data dari tabel rekam_medis
-    
-        // Mengirim data ke view
-        return view('customer.rekam_medis', compact('rekam_medis'));
     }
 
     // use Carbon\Carbon; // Pastikan Anda sudah mengimport Carbon

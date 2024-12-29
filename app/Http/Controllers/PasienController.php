@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Database\QueryException; // Untuk menangani error saat penghapusan
 use App\Models\Pasien;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use View;
 
 class PasienController extends Controller
 {
+
     public function index()
     {
         // Mengambil data pasien dari database
@@ -23,8 +25,12 @@ class PasienController extends Controller
     public function informasi_pasien()
     {
         // Mengambil data pasien dari database
-        $pasien = Pasien::all(); // Mengambil semua data dari tabel pasien
-    
+        $user = Auth::user();
+
+        $idUser = $user->id;
+
+        $pasien = Pasien::where('id', $idUser)->firstOrFail(); // Mengambil semua data dari tabel pasien
+        
         // return view('admin/pasien');
     
         // Mengirim data ke view

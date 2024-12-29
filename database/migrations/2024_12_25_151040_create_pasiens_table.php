@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('riwayat_penyakit', 50)->nullable();
             $table->string('riwayat_pengobatan', 50)->nullable();
 
-            $table->unsignedBigInteger('id')->nullable();
+            $table->unsignedBigInteger('id');
 
             $table->foreign('id')
                   ->references('id')->on('users')
