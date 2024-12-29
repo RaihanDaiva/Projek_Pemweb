@@ -181,7 +181,7 @@
         <tr>
             <td>Jumlah</td>
             <td>
-                <input type="text" class="form-control" name="jumlah_pembayaran" required>
+                <input type="number" class="form-control" name="jumlah_pembayaran" value="{{ old('jumlah_pembayaran', $pembayaran->jumlah_pembayaran ?? '') }}" placeholder="Akan dihitung otomatis" readonly>
             </td>
         </tr>
         
@@ -237,7 +237,13 @@
                 </select>
             </td>
         </tr>
-        
+        <tr>
+            <td>Jumlah Obat</td>
+            <td>
+                <input type="number" class="form-control" name="jumlah_obat" required 
+                    min="1" placeholder="Masukkan jumlah obat">
+            </td>
+        </tr>
         <tr>
             <td></td>
             <td class="pt-3">
