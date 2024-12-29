@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use Session;
+use Illuminate\Validation\ValidationException;
 
 class RegisterController extends Controller
 {
@@ -16,24 +16,36 @@ class RegisterController extends Controller
     
     public function actionregister(Request $request)
     {
-        // Validasi data
-        $request->validate([
-        'name' => 'required|string|max:255', // Pastikan kolom 'name' diisi
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:8',
-        'role' => 'required',
-        ]);
+        try {
+            // Validasi data
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email', // Email harus unik
+                'password' => 'required|min:8', // Password minimal 8 karakter
+                'role' => 'required',
+            ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $request->role,
-            'active' => 1
-        ]);
+            // Membuat user baru
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => $request->role,
+                'active' => 1,
+            ]);
 
-        // Set flash message sukses
-        session()->flash('success', 'Registrasi berhasil!');
-        return redirect()->back();   
+            // Set flash message sukses
+            session()->flash('success', 'Registrasi berhasil!');
+            return redirect()->back();
+        } catch (ValidationException $e) {
+            // Menangkap error validasi
+            $errors = $e->validator->errors()->all();
+
+            // Menyimpan pesan error ke flash session
+            session()->flash('error', $errors);
+
+            // Redirect kembali dengan input
+            return redirect()->back()->withInput();
+        }
     }
 }
