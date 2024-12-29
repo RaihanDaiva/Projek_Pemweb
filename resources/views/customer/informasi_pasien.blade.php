@@ -140,7 +140,7 @@
 
         <!-- Table Start -->
         <div class="d-flex justify-content-center mt-5">
-                    <form class="text-dark bg-light bg-gradient p-5 rounded-3" style="box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
+                    <form method="POST" class="text-dark bg-light bg-gradient p-5 rounded-3" style="box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
                         -webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
                         -moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);">
                         <h1 class="text-primary mb-5 d-flex justify-content-center">Data Diri</h1>
@@ -149,55 +149,65 @@
                             <tr>
                                 <td>No Pasien</td>
                                 <td>
-                                    <select class="form-control" name="id_pasien" required>
-                                    <b> <i class="fa-regular fa-user"></i> {{Auth::user()->name}}</b>
-                                       
-                                    </select>
+                                    <input type="text" class="form-control" name="diagnosa" value="{{Auth::user()->id ?? ''}}" required>                              
                                 </td>
                             </tr>
                             <tr>
                                 <td>Nama Pasien</td>
                                 <td>
-                                    {{Auth::user()->name}}  
+                                    <input type="text" class="form-control" name="diagnosa" value="{{Auth::user()->pasien->nama_pasien ?? ''}}" required> 
                                 </td>
                             </tr>
                             <tr>
                                 <td>Tanggal Lahir</td>
                                 <td>
-                                    {{Auth::user()->name}}
+                                    <input type="text" class="form-control" name="diagnosa" required value="{{Auth::user()->pasien->tanggal_lahir ?? ''}}">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Jenis Kelamin</td>
                                 <td>
-                                    <div style="display: flex; gap: 10px;">
-                                        <!-- Input untuk tanggal -->
-                                        <input class="form-control" type="date" name="tanggal_kunjungan" required>
-                                    </div>
+                                    <input type="text" class="form-control" name="diagnosa" required value="{{Auth::user()->pasien->jenis_kelamin ?? ''}}">
                                 </td>
                             </tr>   
                             <tr>
                                 <td>Alamat</td>
                                 <td>
-                                    <input type="text" class="form-control" name="tindakan_medis" required>
+                                    <input type="text" class="form-control" name="diagnosa" required value="{{Auth::user()->pasien->alamat ?? ''}}">
                                 </td>
                             </tr>
                             <tr>
                                 <td>No Telp</td>
                                 <td>
-                                    
+                                    <input type="text" class="form-control" name="diagnosa" required>{{Auth::user()->pasien->no_telp ?? ''}}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Riwayat Penyakit</td>
                                 <td>
-                                    
+                                    <input type="text" class="form-control" name="diagnosa" required>{{Auth::user()->pasien->riwayat_penyakit ?? ''}}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Riwayat Pengobatan</td>
                                 <td>
-                            
+                                    <input type="text" class="form-control" name="diagnosa" required>{{Auth::user()->pasien->riwayat_pengobatan ?? ''}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="pt-3">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <button type="submit" style="width: 100px;" 
+                                                class="btn border border-primary btn-block btns-hover">
+                                            SIMPAN
+                                        </button>
+                                        <button type="button" style="width: 100px;" 
+                                                class="btn border-danger btn-block btnb-hover" 
+                                                onclick="window.location.href='{{ route('rekam_medis.index') }}';">
+                                            BATAL
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
