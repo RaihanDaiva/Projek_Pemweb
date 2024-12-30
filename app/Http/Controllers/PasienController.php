@@ -155,7 +155,7 @@ class PasienController extends Controller
         try {
             // Mencari data pasien berdasarkan id
             $pasien = Pasien::where('id_pasien', $id)->firstOrFail();
-
+    
             $user = $pasien->user;
             if ($user) {
                 $user->delete();
@@ -170,5 +170,4 @@ class PasienController extends Controller
             return redirect()->route('pasien.index')->with('error', 'Data ini tidak bisa dihapus karena masih terkait dengan data lain.');
         }
     }
-
 }
