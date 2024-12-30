@@ -143,7 +143,7 @@
                     <form method="POST" class="text-dark bg-light bg-gradient p-5 rounded-3" style="box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
                         -webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
                         -moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);"
-                        action="{{ route('pasien.update', $pasien->id_pasien)}}">
+                        action="{{ route('pasien.update_customer', $pasien->id_pasien)}}">
                         <h1 class="text-primary mb-5 d-flex justify-content-center">Data Diri</h1>
                         @csrf     
                         @method('PUT')                   
@@ -175,8 +175,11 @@
                             <tr>
                                 <td>Jenis Kelamin</td>
                                 <td>
-                                <input type="text" class="form-control" name="jenis_kelamin" required value="{{$pasien->jenis_kelamin ?? ''}}">
-
+                                    <select class="form-control" name="jenis_kelamin" value="{{$pasien->jenis_kelamin ?? ''}}" required>
+                                        <option value="">Upload jenis kelamin</option>
+                                        <option value="L" {{$pasien->jenis_kelamin === 'L' ? 'selected' :''}}>Laki-laki</option>
+                                        <option value="P" {{$pasien->jenis_kelamin === 'P' ? 'selected' :''}}>Perempuan</option>
+                                    </select>
                                 </td>
                             </tr>   
                             <tr>

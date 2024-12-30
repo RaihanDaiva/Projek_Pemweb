@@ -113,6 +113,36 @@ class PasienController extends Controller
         return redirect()->route('pasien.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
     
+    public function update_customer(Request $request, $id)
+    {
+        // Validate form
+        $this->validate($request, [
+            'nama_pasien'     => 'required|max:50',
+            'tanggal_lahir'   => 'required|max:50',
+            'jenis_kelamin'   => 'required',
+            'alamat'          => 'required|max:50',
+            'no_telp'         => 'required|max:20',
+            'riwayat_penyakit'=> 'required|max:50',
+            'riwayat_pengobatan' => 'required|max:50'
+        ]);
+    
+        // Get pasien by ID
+        $pasien = Pasien::where('id_pasien', $id)->firstOrFail();
+    
+        // Update pasien data
+        $pasien->update([
+            'nama_pasien'     => $request->input('nama_pasien'),
+            'tanggal_lahir'   => $request->input('tanggal_lahir'),
+            'jenis_kelamin'   => $request->input('jenis_kelamin'),
+            'alamat'          => $request->input('alamat'),
+            'no_telp'         => $request->input('no_telp'),
+            'riwayat_penyakit'=> $request->input('riwayat_penyakit'),
+            'riwayat_pengobatan' => $request->input('riwayat_pengobatan')
+        ]);
+    
+        // Redirect to index with success message
+        return redirect()->route('customer.informasi_pasien')->with(['success' => 'Data Berhasil Diubah!']);
+    }
 
     public function destroy($id)
     {

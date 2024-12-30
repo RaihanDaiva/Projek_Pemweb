@@ -65,8 +65,8 @@
                     <label><i class="fa fa-address-book"></i> Role</label>
                     <select type="text" name="role" class="form-control" value="admin">
                         <option value="">Pilih Role</option>
-                        <option value="Lunas">admin</option>
-                        <option value="Belum">user</option>
+                        <option value="admin">admin</option>
+                        <option value="user">user</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Register</button>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
+use App\Models\Pasien;
 
 class RegisterController extends Controller
 {
@@ -32,6 +33,10 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
                 'role' => $request->role,
                 'active' => 1,
+            ]);
+
+            $pasien = Pasien::create([
+                'id'=>$user->id
             ]);
 
             // Set flash message sukses

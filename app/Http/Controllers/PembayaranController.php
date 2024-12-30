@@ -24,11 +24,8 @@ class PembayaranController extends Controller
 
     public function index_customer()
     {
-        $user = Auth::user();
-        $idUser = $user->id;
-
         // Fetch the Pasien model instance where the user ID matches
-        $pasien = Pasien::where('id_pasien', $idUser)->firstOrFail();  // Use firstOrFail to get a model instance or fail
+        $pasien = Pasien::where('id', Auth::user()->id)->firstOrFail();  // Use firstOrFail to get a model instance or fail
 
         // Fetch the Pembayaran based on the id_pasien from the Pasien model
         $pembayaran = Pembayaran::where('id_pasien', $pasien->id_pasien)->get();  // Access id_pasien here
