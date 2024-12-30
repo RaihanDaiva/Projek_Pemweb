@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pasien', function (Blueprint $table) {
-            $table->id('id_pasien'); //primary key
+            $table->id('id_pasien');
             $table->string('nama_pasien', 50)->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('riwayat_penyakit', 50)->nullable();
             $table->string('riwayat_pengobatan', 50)->nullable();
 
-            $table->unsignedBigInteger('id'); //foreign key
+            $table->unsignedBigInteger('id');
 
             $table->foreign('id')
                   ->references('id')->on('users')

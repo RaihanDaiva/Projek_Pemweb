@@ -6,10 +6,12 @@ use App\Models\User;
 use App\Models\Pasien;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use View;
 
 class UserController extends Controller
 {
+
     public function index()
     {
         // Mengambil data dokter dari database
@@ -18,6 +20,7 @@ class UserController extends Controller
         // Mengirim data ke view
         return view('user.index', compact('user'));
     }
+
     public function create()
     {
         return view('user.create');

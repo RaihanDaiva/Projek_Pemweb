@@ -157,6 +157,7 @@
                                                         <tr class="judul-tabel">
                                                             <th scope="col">No</th>
                                                             <th scope="col">Obat</th>
+                                                            <th scope="col">Jumlah obat</th>
                                                             <th scope="col">Jumlah bayar</th>
                                                             <th scope="col">Metode bayar</th>
                                                             <th scope="col">Status bayar</th>                                                                                                                                                                           
@@ -172,6 +173,7 @@
                                                             <td class="text-dark">
                                                                 {{$p->id_obat ?? 'Tidak Ditemukan'}}
                                                             </td>
+                                                            <td class="text-dark"> {{$p -> jumlah_obat}}</td>
                                                             <td class="text-dark">Rp {{ number_format($p->jumlah_pembayaran, 0, ',', '.') }}</td>
                                                             <td class="text-dark">{{ $p->metode_pembayaran }}</td>
                                                             <td class="{{ $p->status_pembayaran === 'Belum' ? 'text-danger' : 'text-success' }}">

@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+
 @if (session('success'))
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -38,6 +39,15 @@
             @endif
             <form action="{{route('actionregister')}}" method="post">
             @csrf
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach (session('error') as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                 <div class="form-group">
                     <label><i class="fa fa-user"></i> Name</label>
                     <input type="text" name="name" class="form-control" placeholder="Name" required="">
@@ -49,7 +59,7 @@
                 <div class="form-group">
                     <label><i class="fa fa-key"></i> Password</label>
                     <input type="password" name="password" class="form-control" placeholder="Password" required="">
-                    <input type="text" name="role" class="form-control" value="admin" readonly>
+                    <!-- <input type="text" name="role" class="form-control" value="admin" readonly> -->
                 </div>
                 <div class="form-group">
                     <label><i class="fa fa-address-book"></i> Role</label>

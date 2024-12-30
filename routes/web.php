@@ -44,6 +44,7 @@ Route::get('admin/pasien/create',[\App\Http\Controllers\PasienController::class,
 Route::post('admin/pasien/create',[\App\Http\Controllers\PasienController::class, 'store'])->name('pasien.store');
 Route::get('/pasien/{id}/update', [\App\Http\Controllers\PasienController::class, 'edit'])->name('pasien.edit');
 Route::put('/pasien/{id}/update', [\App\Http\Controllers\PasienController::class, 'update'])->name('pasien.update');
+Route::put('/pasien/{id}/update', [\App\Http\Controllers\PasienController::class, 'update_customer'])->name('pasien.update_customer');
 Route::delete('/pasien/{id}', [\App\Http\Controllers\PasienController::class, 'destroy'])->name('pasien.destroy');
 Route::get('actionlogout', [\App\Http\Controllers\LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
@@ -112,6 +113,6 @@ Route::delete('/user/{id}', [\App\Http\Controllers\UserController::class, 'destr
 Route::get('actionlogout', [\App\Http\Controllers\LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
 //Tabel Customer
-Route::get('customer/pembayaran', [\App\Http\Controllers\PembayaranController::class, 'index_customer'])->name('customer.pembayaran');
-Route::get('customer/rekam_medis', [\App\Http\Controllers\RekamMedisController::class, 'index_rekam_medis'])->name('customer.rekam_medis');
+route::get('customer/pembayaran', [\App\Http\Controllers\PembayaranController::class, 'index_customer'])->name('customer.pembayaran');
+route::get('customer/rekam_medis', [\App\Http\Controllers\RekamMedisController::class, 'index_rekam_medis'])->name('customer.rekam_medis');
 Route::get('customer/informasi_pasien', [\App\Http\Controllers\PasienController::class, 'informasi_pasien'])->name('customer.informasi_pasien');

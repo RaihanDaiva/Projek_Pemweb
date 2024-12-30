@@ -83,7 +83,7 @@
 
                 <div class="navbar-nav w-100">
                     <a href="/admin" class="nav-item nav-link">
-                        <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+                        <i class="fa fa-tachometer-alt me-2"></i>Dashboard Admin
                     </a>
 
                     <div class="nav-item dropdown">
@@ -175,6 +175,7 @@
                                                     <thead style="background-color: #002d72;">
                                                         <tr class="judul-tabel">
                                                             <th scope="col">No</th>
+                                                            <th scope="col">ID</th>
                                                             <th scope="col">Waktu Pembayaran</th>
                                                             <th scope="col">Status</th>
                                                             <th scope="col">Jumlah</th>
@@ -190,6 +191,7 @@
                                                         @foreach ($pembayaran as $index => $p)
                                                         <tr class="data">
                                                             <td class="text-dark">{{ $index + 1 }}</td>
+                                                            <td class="text-dark">{{ $p->id_pembayaran }}</td>
                                                             <td class="text-dark">{{ $p->waktu_pembayaran }}</td>
                                                             <!-- Tambahkan kelas dinamis untuk status -->
                                                             <td class="{{ $p->status_pembayaran === 'Belum' ? 'text-danger' : 'text-success' }}">

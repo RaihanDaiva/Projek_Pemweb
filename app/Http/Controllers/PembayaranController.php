@@ -8,6 +8,7 @@ use App\Models\Obat;
 use App\Models\Pasien;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use Auth;
 use View;
 
 class PembayaranController extends Controller
@@ -23,12 +24,16 @@ class PembayaranController extends Controller
 
     public function index_customer()
     {
-        // Mengambil data dokter dari database
-        $pembayaran = Pembayaran::all(); // Mengambil semua data dari tabel pembayaran
-    
-        // Mengirim data ke view
+        // Fetch the Pasien model instance where the user ID matches
+        $pasien = Pasien::where('id', Auth::user()->id)->firstOrFail();  // Use firstOrFail to get a model instance or fail
+
+        // Fetch the Pembayaran based on the id_pasien from the Pasien model
+        $pembayaran = Pembayaran::where('id_pasien', $pasien->id_pasien)->get();  // Access id_pasien here
+
+        // Send data to the view
         return view('customer.pembayaran', compact('pembayaran'));
     }
+
     // use Carbon\Carbon; // Pastikan Anda sudah mengimport Carbon
 
     public function create()

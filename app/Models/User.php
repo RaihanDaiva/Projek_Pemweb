@@ -33,7 +33,7 @@ class User extends Authenticatable
 
     public function pasien()
     {
-        return $this->hasOne(Pasien::class, 'id', 'id');
+        return $this->hasOne(Pasien::class, 'id_pasien', 'id_pasien');
     }
 
 }
