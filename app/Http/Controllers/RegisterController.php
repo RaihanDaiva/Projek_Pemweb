@@ -34,10 +34,12 @@ class RegisterController extends Controller
                 'role' => $request->role,
                 'active' => 1,
             ]);
-
-            $pasien = Pasien::create([
-                'id'=>$user->id
-            ]);
+            
+            if ($user->role == 'user'){
+                $pasien = Pasien::create([
+                    'id'=>$user->id
+                ]);
+            }
 
             // Set flash message sukses
             session()->flash('success', 'Registrasi berhasil!');
