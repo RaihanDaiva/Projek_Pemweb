@@ -10,7 +10,6 @@ use App\Models\Pembayaran;
 use App\Models\RekamMedis;
 use Illuminate\Http\Request;
 use Auth;
-use Auth;
 use View;
 
 class RekamMedisController extends Controller

@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Pasien;
 use Illuminate\Validation\ValidationException;
-use App\Models\Pasien;
 
 class RegisterController extends Controller
 {

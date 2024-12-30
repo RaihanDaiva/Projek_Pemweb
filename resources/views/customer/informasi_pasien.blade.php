@@ -151,19 +151,11 @@
                         @method('PUT')                   
                         <table>
                             <tr>
-                                <td>id Pasien</td>
-                                <td>id Pasien</td>
+                                <td>id Pasien</td>                                
                                 <td>
                                     <input type="text" class="form-control" value="{{$pasien->id_pasien ?? ''}}" readonly>                              
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>id Users</td>
-                                <td>
-                                    <input type="text" class="form-control"  value="{{$pasien->id ?? ''}}" readonly>                              
-                                    <input type="text" class="form-control" value="{{$pasien->id_pasien ?? ''}}" readonly>                              
-                                </td>
-                            </tr>
+                            </tr>                           
                             <tr>
                                 <td>id Users</td>
                                 <td>
@@ -173,15 +165,13 @@
                             <tr>
                                 <td>Nama Pasien</td>
                                 <td>
-                                    <input type="text" class="form-control" name="nama_pasien" value="{{$pasien->nama_pasien ?? ''}}" required> 
-                                    <input type="text" class="form-control" name="nama_pasien" value="{{$pasien->nama_pasien ?? ''}}" required> 
+                                    <input type="text" class="form-control" name="nama_pasien" value="{{$pasien->nama_pasien ?? ''}}" required>                             
                                 </td>
                             </tr>
                             <tr>
                                 <td>Tanggal Lahir</td>
                                 <td>
-                                    <input type="date" class="form-control" name="tanggal_lahir" required value="{{$pasien->tanggal_lahir ?? ''}}">
-                                    <input type="date" class="form-control" name="tanggal_lahir" required value="{{$pasien->tanggal_lahir ?? ''}}">
+                                    <input type="date" class="form-control" name="tanggal_lahir" required value="{{$pasien->tanggal_lahir ?? ''}}">                            
                                 </td>
                             </tr>
                             <tr>
@@ -197,29 +187,25 @@
                             <tr>
                                 <td>Alamat</td>
                                 <td>
-                                    <input type="text" class="form-control" name="alamat" required value="{{$pasien->alamat ?? ''}}">
-                                    <input type="text" class="form-control" name="alamat" required value="{{$pasien->alamat ?? ''}}">
+                                    <input type="text" class="form-control" name="alamat" required value="{{$pasien->alamat ?? ''}}">                                    
                                 </td>
                             </tr>
                             <tr>
                                 <td>No Telp</td>
                                 <td>
-                                    <input type="text" class="form-control" name="no_telp" required value="{{$pasien->no_telp ?? ''}}">
-                                    <input type="text" class="form-control" name="no_telp" required value="{{$pasien->no_telp ?? ''}}">
+                                    <input type="text" class="form-control" name="no_telp" required value="{{$pasien->no_telp ?? ''}}">                                    
                                 </td>
                             </tr>
                             <tr>
                                 <td>Riwayat Penyakit</td>
                                 <td>
-                                    <input type="text" class="form-control" name="riwayat_penyakit" required value="{{$pasien->riwayat_penyakit ?? ''}}">
-                                    <input type="text" class="form-control" name="riwayat_penyakit" required value="{{$pasien->riwayat_penyakit ?? ''}}">
+                                    <input type="text" class="form-control" name="riwayat_penyakit" required value="{{$pasien->riwayat_penyakit ?? ''}}">                                    
                                 </td>
                             </tr>
                             <tr>
                                 <td>Riwayat Pengobatan</td>
                                 <td>
-                                    <input type="text" class="form-control" name="riwayat_pengobatan" required value="{{$pasien->riwayat_pengobatan ?? ''}}">
-                                    <input type="text" class="form-control" name="riwayat_pengobatan" required value="{{$pasien->riwayat_pengobatan ?? ''}}">
+                                    <input type="text" class="form-control" name="riwayat_pengobatan" required value="{{$pasien->riwayat_pengobatan ?? ''}}">                                    
                                 </td>
                             </tr>
                             <tr>
@@ -229,9 +215,7 @@
                                         <button type="submit" style="width: 100px;" 
                                                 class="btn border border-primary btn-block btns-hover">
                                                 SIMPAN
-                                        </button>        
-                                                SIMPAN
-                                        </button>        
+                                        </button>                                                     
                                     </div>
                                 </td>
                             </tr>

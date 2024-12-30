@@ -8,7 +8,6 @@ use App\Models\Pasien;
 use App\Models\User;
 use Illuminate\Http\Request;
 use View;
-use Auth;
 
 class PasienController extends Controller
 {

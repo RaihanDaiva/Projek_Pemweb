@@ -9,7 +9,6 @@ use App\Models\Pasien;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use Auth;
-use Auth;
 use View;
 
 class PembayaranController extends Controller
