@@ -31,12 +31,17 @@ Route::get('register', [\App\Http\Controllers\RegisterController::class, 'regist
 Route::post('register/action', [\App\Http\Controllers\RegisterController::class, 'actionregister'])->name('actionregister');
 
 //ADMIN
+Route::middleware(['checkRole:admin'])->group(function () {
 Route::get('admin',[\App\Http\Controllers\AdminController::class, 'index'])->middleware('auth')->name('admin.index');
 Route::get('actionlogout', [\App\Http\Controllers\LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
+});
 
 //USER
+Route::middleware(['checkRole:user'])->group(function () {
 Route::get('/customer/informasi_pasien',[\App\Http\Controllers\UserController::class, 'index'])->middleware('auth')->name('user.informasi_pasien.index');
+Route::put('/customer/informasi_pasien/{id}', [\App\Http\Controllers\PasienController::class, 'update_pasien'])->name('pasien.datadiri');
 Route::get('actionlogout', [\App\Http\Controllers\LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
+});
 
 //Tabel Pasien
 Route::get('admin/pasien',[\App\Http\Controllers\PasienController::class, 'index'])->name('pasien.index')->middleware('auth');

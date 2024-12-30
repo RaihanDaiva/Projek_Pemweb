@@ -206,7 +206,19 @@
                                     <input type="text" class="form-control" name="riwayat_pengobatan" value="{{ $pasien->riwayat_pengobatan }}">
                                 </td>
                             </tr>
-                            
+                            <tr>
+                                <td>No User</td>
+                                <td>
+                                <select class="form-control" name="id" required>
+                                    <option value="">Pilih Obat</option>
+                                    @foreach($userList as $user)
+                                        <option value="{{ $user->id }}" {{ $pasien->id == $user->id ? 'selected' : '' }}>
+                                            {{ $user->id }} - {{ $user->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                </td>
+                            </tr>
                             <tr>
                                 <td></td>
                                 <td class="pt-3">

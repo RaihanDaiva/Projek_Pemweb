@@ -111,7 +111,7 @@
 
 
     <!-- Content Start -->
-    <div class="content" style="max-height: 100vh">
+    <div class="content" style="max-height: 140vh">
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand bg-light navbar-light px-4 py-3">
             <a href="index.php" class="navbar-brand d-flex d-lg-none me-4">
@@ -140,17 +140,27 @@
 
         <!-- Table Start -->
         <div class="d-flex justify-content-center mt-5">
-                    <form method="POST" class="text-dark bg-light bg-gradient p-5 rounded-3" style="box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
+                    <form class="text-dark bg-light bg-gradient p-5 rounded-3" style="box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
                         -webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);
                         -moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.22);"
                         action="{{ route('pasien.update_customer', $pasien->id_pasien)}}">
                         <h1 class="text-primary mb-5 d-flex justify-content-center">Data Diri</h1>
                         @csrf     
                         @method('PUT')                   
+                        @csrf     
+                        @method('PUT')                   
                         <table>
                             <tr>
                                 <td>id Pasien</td>
+                                <td>id Pasien</td>
                                 <td>
+                                    <input type="text" class="form-control" value="{{$pasien->id_pasien ?? ''}}" readonly>                              
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>id Users</td>
+                                <td>
+                                    <input type="text" class="form-control"  value="{{$pasien->id ?? ''}}" readonly>                              
                                     <input type="text" class="form-control" value="{{$pasien->id_pasien ?? ''}}" readonly>                              
                                 </td>
                             </tr>
@@ -164,11 +174,13 @@
                                 <td>Nama Pasien</td>
                                 <td>
                                     <input type="text" class="form-control" name="nama_pasien" value="{{$pasien->nama_pasien ?? ''}}" required> 
+                                    <input type="text" class="form-control" name="nama_pasien" value="{{$pasien->nama_pasien ?? ''}}" required> 
                                 </td>
                             </tr>
                             <tr>
                                 <td>Tanggal Lahir</td>
                                 <td>
+                                    <input type="date" class="form-control" name="tanggal_lahir" required value="{{$pasien->tanggal_lahir ?? ''}}">
                                     <input type="date" class="form-control" name="tanggal_lahir" required value="{{$pasien->tanggal_lahir ?? ''}}">
                                 </td>
                             </tr>
@@ -186,11 +198,13 @@
                                 <td>Alamat</td>
                                 <td>
                                     <input type="text" class="form-control" name="alamat" required value="{{$pasien->alamat ?? ''}}">
+                                    <input type="text" class="form-control" name="alamat" required value="{{$pasien->alamat ?? ''}}">
                                 </td>
                             </tr>
                             <tr>
                                 <td>No Telp</td>
                                 <td>
+                                    <input type="text" class="form-control" name="no_telp" required value="{{$pasien->no_telp ?? ''}}">
                                     <input type="text" class="form-control" name="no_telp" required value="{{$pasien->no_telp ?? ''}}">
                                 </td>
                             </tr>
@@ -198,11 +212,13 @@
                                 <td>Riwayat Penyakit</td>
                                 <td>
                                     <input type="text" class="form-control" name="riwayat_penyakit" required value="{{$pasien->riwayat_penyakit ?? ''}}">
+                                    <input type="text" class="form-control" name="riwayat_penyakit" required value="{{$pasien->riwayat_penyakit ?? ''}}">
                                 </td>
                             </tr>
                             <tr>
                                 <td>Riwayat Pengobatan</td>
                                 <td>
+                                    <input type="text" class="form-control" name="riwayat_pengobatan" required value="{{$pasien->riwayat_pengobatan ?? ''}}">
                                     <input type="text" class="form-control" name="riwayat_pengobatan" required value="{{$pasien->riwayat_pengobatan ?? ''}}">
                                 </td>
                             </tr>
@@ -212,6 +228,8 @@
                                     <div class="d-flex justify-content-center gap-2">
                                         <button type="submit" style="width: 100px;" 
                                                 class="btn border border-primary btn-block btns-hover">
+                                                SIMPAN
+                                        </button>        
                                                 SIMPAN
                                         </button>        
                                     </div>

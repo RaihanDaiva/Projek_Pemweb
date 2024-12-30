@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Database\QueryException; // Untuk menangani error saat penghapusan
 use App\Models\Pasien;
+use App\Models\User;
 use Illuminate\Http\Request;
 use View;
+use Auth;
 
 class PasienController extends Controller
 {
@@ -40,7 +42,8 @@ class PasienController extends Controller
     
     public function create()
     {
-        return view('pasien.create');
+        $userList = User::all();
+        return view('pasien.create', compact('userList'));
     }
 
     public function store(Request $request)
@@ -53,7 +56,8 @@ class PasienController extends Controller
             'alamat'     => 'required|max:50',
             'no_telp'     => 'required|max:20',
             'riwayat_penyakit'     => 'required|max:50',
-            'riwayat_pengobatan'     => 'required|max:50'
+            'riwayat_pengobatan'     => 'required|max:50',
+            'id'    => 'required',
         ]);
 
         //create post
@@ -64,7 +68,8 @@ class PasienController extends Controller
             'alamat'   => $request->alamat,
             'no_telp'   => $request->no_telp,
             'riwayat_penyakit'   => $request->riwayat_penyakit,
-            'riwayat_pengobatan'   => $request->riwayat_pengobatan
+            'riwayat_pengobatan'   => $request->riwayat_pengobatan,
+            'id' => $request->id,
         ]);
 
         //redirect to index
@@ -76,10 +81,10 @@ class PasienController extends Controller
     {
         //get post by ID
         $pasien = Pasien::where('id_pasien', $id)->firstOrFail();
-
+        $userList = User::all();
 
         //render view with post
-        return view('pasien.edit', compact('pasien'));
+        return view('pasien.edit', compact('pasien', 'userList'));
     }
 
     public function update(Request $request, $id)
@@ -92,7 +97,8 @@ class PasienController extends Controller
             'alamat'          => 'required|max:50',
             'no_telp'         => 'required|max:20',
             'riwayat_penyakit'=> 'required|max:50',
-            'riwayat_pengobatan' => 'required|max:50'
+            'riwayat_pengobatan' => 'required|max:50',
+            'id' => 'required',
         ]);
     
         // Get pasien by ID
@@ -106,7 +112,8 @@ class PasienController extends Controller
             'alamat'          => $request->input('alamat'),
             'no_telp'         => $request->input('no_telp'),
             'riwayat_penyakit'=> $request->input('riwayat_penyakit'),
-            'riwayat_pengobatan' => $request->input('riwayat_pengobatan')
+            'riwayat_pengobatan' => $request->input('riwayat_pengobatan'),
+            'id' => $request->input('id'),
         ]);
     
         // Redirect to index with success message
@@ -149,6 +156,11 @@ class PasienController extends Controller
         try {
             // Mencari data pasien berdasarkan id
             $pasien = Pasien::where('id_pasien', $id)->firstOrFail();
+
+            $user = $pasien->user;
+            if ($user) {
+                $user->delete();
+            }
             
             // Menghapus data pasien
             $pasien->delete();

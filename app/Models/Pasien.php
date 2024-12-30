@@ -24,5 +24,8 @@ class Pasien extends Model
     ];
 
     #relasi ke model user
-    
+    public function user()
+    {
+    return $this->belongsTo(User::class, 'id'); // Relasi kebalikannya
+    }
 }
