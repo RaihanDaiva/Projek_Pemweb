@@ -176,7 +176,7 @@
                                 <td>Jenis Kelamin</td>
                                 <td>
                                     <select class="form-control" name="jenis_kelamin" value="{{$pasien->jenis_kelamin ?? ''}}" required>
-                                        <option value="">Upload jenis kelamin</option>
+                                        <option value="">Pilih jenis kelamin</option>
                                         <option value="L" {{$pasien->jenis_kelamin === 'L' ? 'selected' :''}}>Laki-laki</option>
                                         <option value="P" {{$pasien->jenis_kelamin === 'P' ? 'selected' :''}}>Perempuan</option>
                                     </select>
