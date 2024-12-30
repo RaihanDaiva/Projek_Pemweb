@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pasien', function (Blueprint $table) {
-            $table->id('id_pasien');
-            $table->string('nama_pasien', 50);
-            $table->date('tanggal_lahir');
-            $table->enum('jenis_kelamin', ['L', 'P']);
-            $table->string('alamat', 50);
-            $table->string('no_telp', 20);
-            $table->string('riwayat_penyakit', 50);
-            $table->string('riwayat_pengobatan', 50);
+            $table->id('id_pasien'); //primary key
+            $table->string('nama_pasien', 50)->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
+            $table->string('alamat', 50)->nullable();
+            $table->string('no_telp', 20)->nullable();
+            $table->string('riwayat_penyakit', 50)->nullable();
+            $table->string('riwayat_pengobatan', 50)->nullable();
 
-            $table->unsignedBigInteger('id')->nullable();
+            $table->unsignedBigInteger('id'); //foreign key
 
             $table->foreign('id')
                   ->references('id')->on('users')
@@ -36,10 +36,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('pasien', function (Blueprint $table) {
-            // Hapus foreign key
+            // Hapus foreign key terlebih dahulu sebelum drop tabel
             $table->dropForeign(['id']);
         });
 
+        // Hapus tabel pasien
         Schema::dropIfExists('pasien');
     }
 };

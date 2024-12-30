@@ -182,6 +182,7 @@
                                                             <th scope="col">No Pasien</th>
                                                             <th scope="col">No Kasir</th>
                                                             <th scope="col">No Obat</th>
+                                                            <th scope="col">Jumlah Obat</th>
                                                             <th scope="col" class="text-align">Aksi</th>
                                                         </tr>
                                                     </thead>
@@ -205,6 +206,7 @@
                                                             <td class="text-dark">
                                                                 {{ $p->id_obat }} - {{ $p->obat->nama_obat ?? 'Tidak Ditemukan' }}
                                                             </td>
+                                                            <td class="text-dark">{{ $p->jumlah_obat }}</td>
                                                             <td>
                                                                 <a href="{{ route('pembayaran.edit', $p->id_pembayaran) }}" style="background-color: #002d72;" class="btn btn-sm">
                                                                     <i class="fa-solid fa-pen-to-square" style="color: #ffffff"></i>
@@ -215,10 +217,20 @@
                                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                                                                 </form>
                                                                 @if ($p->status_pembayaran === 'Belum')
+                                                                    <!-- Tombol untuk mengubah status menjadi Lunas -->
                                                                     <form action="{{ route('pembayaran.updateStatus', $p->id_pembayaran) }}" method="POST" style="display:inline;">
                                                                         @csrf
                                                                         @method('PUT')
+                                                                        <input type="hidden" name="status" value="Lunas">
                                                                         <button type="submit" class="btn btn-success btn-sm"><i class="fa-solid fa-check"></i></button>
+                                                                    </form>
+                                                                @elseif ($p->status_pembayaran === 'Lunas')
+                                                                    <!-- Tombol untuk mengubah status menjadi Belum -->
+                                                                    <form action="{{ route('pembayaran.updateStatus', $p->id_pembayaran) }}" method="POST" style="display:inline;">
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <input type="hidden" name="status" value="Belum">
+                                                                        <button type="submit" class="btn btn-warning btn-sm"><i class="fa-solid fa-undo"></i></button>
                                                                     </form>
                                                                 @endif
                                                             </td>

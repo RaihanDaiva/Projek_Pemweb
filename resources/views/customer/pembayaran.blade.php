@@ -170,7 +170,7 @@
                                                         <tr class="data">
                                                             <td class="text-dark">{{ $index + 1 }}</td>
                                                             <td class="text-dark">
-                                                                {{$p->obat->nama_obat ?? 'Tidak Ditemukan'}}
+                                                                {{$p->id_obat ?? 'Tidak Ditemukan'}}
                                                             </td>
                                                             <td class="text-dark">Rp {{ number_format($p->jumlah_pembayaran, 0, ',', '.') }}</td>
                                                             <td class="text-dark">{{ $p->metode_pembayaran }}</td>
