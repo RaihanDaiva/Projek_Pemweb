@@ -7,6 +7,7 @@ use App\Models\Pasien;
 use App\Models\User;
 use Illuminate\Http\Request;
 use View;
+use Auth;
 
 class PasienController extends Controller
 {
@@ -24,7 +25,7 @@ class PasienController extends Controller
     public function informasi_pasien()
     {
         // Mengambil data pasien dari database
-        $pasien = Pasien::all(); // Mengambil semua data dari tabel pasien
+        $pasien = Pasien::where('id', Auth::user()->id)->first(); // Mengambil semua data dari tabel pasien
     
         // return view('admin/pasien');
     
@@ -115,17 +116,17 @@ class PasienController extends Controller
     
     public function update_pasien(Request $request, $id)
     {
+        // dd($request->all());
         // Validate form
         $this->validate($request, [
             'nama_pasien'     => 'required|max:50',
-            'tanggal_lahir'   => 'required|max:50',
+            'tanggal_lahir'   => 'required|date',
             'jenis_kelamin'   => 'required',
             'alamat'          => 'required|max:50',
             'no_telp'         => 'required|max:20',
             'riwayat_penyakit'=> 'required|max:50',
-            'riwayat_pengobatan' => 'required|max:50'
+            'riwayat_pengobatan' => 'required|max:50',
         ]);
-    
         // Get pasien by ID
         $pasien = Pasien::where('id_pasien', $id)->firstOrFail();
     
@@ -137,7 +138,7 @@ class PasienController extends Controller
             'alamat'          => $request->input('alamat'),
             'no_telp'         => $request->input('no_telp'),
             'riwayat_penyakit'=> $request->input('riwayat_penyakit'),
-            'riwayat_pengobatan' => $request->input('riwayat_pengobatan')
+            'riwayat_pengobatan' => $request->input('riwayat_pengobatan'),
         ]);
     
         // Redirect to index with success message
@@ -149,6 +150,11 @@ class PasienController extends Controller
         try {
             // Mencari data pasien berdasarkan id
             $pasien = Pasien::where('id_pasien', $id)->firstOrFail();
+
+            $user = $pasien->user;
+            if ($user) {
+                $user->delete();
+            }
             
             // Menghapus data pasien
             $pasien->delete();

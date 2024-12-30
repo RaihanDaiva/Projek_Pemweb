@@ -26,7 +26,7 @@ return new class extends Migration
             $table->foreign('id')
                   ->references('id')->on('users')
                   ->onUpdate('cascade')
-                  ->onDelete('restrict');
+                  ->onDelete('cascade');
         });
     }
 
