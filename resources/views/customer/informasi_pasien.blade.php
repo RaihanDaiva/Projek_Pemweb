@@ -118,7 +118,7 @@
                 <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
             </a>
             <div class="bg-light rounded d-flex align-items-center justify-content-between gap-3 ">
-                <i class="fa-solid fa-user-doctor fa-3x text-primary"></i>
+                <i class="fa-solid fa-3x fa-user-doctor text-primary"></i>
                 <h1 style="margin-bottom: 0px;" class="text-primary ">Customer</h1>
             </div>
 
