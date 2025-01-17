@@ -100,15 +100,18 @@ class UserController extends Controller
     
     public function destroy($id)
     {
-        // Temukan user berdasarkan ID
-        $user = user::where('id', $id)->firstOrFail();
-        
-        // Hapus user
-        $user->delete();
-        
-        // Redirect ke halaman yang sesuai setelah penghapusan
-        return redirect()->route('user.index')->with('success', 'Data user berhasil dihapus.');
+        try {
+            // Temukan user berdasarkan ID
+            $user = user::where('id', $id)->firstOrFail();
+            
+            // Hapus user
+            $user->delete();
+            
+            // Redirect ke halaman yang sesuai setelah penghapusan
+            return redirect()->route('user.index')->with('success', 'Data user berhasil dihapus.');
+        } catch (\Exception $e) {
+            // Jika error karena foreign key constraint
+            return redirect()->route('user.index')->with('error', 'Data ini tidak bisa dihapus karena masih terkait dengan data lain.');
+        }
     }
-
-    
 }
